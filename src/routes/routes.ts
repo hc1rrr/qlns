@@ -1,16 +1,22 @@
-
 import Login from "../components/Login";
-import TrangChu from "../components/TrangChu";
+import Dashboard from "../components/Dashboard";
+import RootLayout from "../layout/RootLayout";
+import { ReactNode } from "react";
+import TimeKeeping from "../components/TimeKeeping";
+
 
 export interface IRoute {
     path: string;
     type: "PUBLIC" | "PRIVATE",
-    component: () => JSX.Element
+    component: () => JSX.Element,
+    layout?: ({children}: {children: ReactNode}) => JSX.Element,
 }
 
 const routes: IRoute[] = [
     { path: '/login', type: 'PUBLIC', component: Login },
-    { path: '/', type: 'PUBLIC', component: TrangChu },
+    { path: '/dashboard', type: 'PUBLIC', component: Dashboard, layout: RootLayout },
+    { path: '/time-keeping', type: 'PUBLIC', component: TimeKeeping, layout: RootLayout },
+    
     
   ];
   
