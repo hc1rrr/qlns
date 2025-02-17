@@ -16,7 +16,8 @@ function Dashboard() {
           <div className="flex items-center justify-between p-4 bg-white rounded-lg shadow">
             <div className="text-gray-500">
               <h4 className="text-2xl font-semibold">9</h4>
-              <p className="text-sm">Chức vụ</p>
+              <p className="text-sm">Chức vụụ
+              </p>
             </div>
           </div>
 

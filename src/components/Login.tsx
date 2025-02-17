@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -32,7 +33,7 @@ const Login = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Kiểm tra lại lỗi khi nhấn Đăng nhập
     if (!email.includes("@") || !email.includes(".")) {
@@ -44,8 +45,20 @@ const Login = () => {
 
     // Nếu không có lỗi thì tiếp tục đăng nhập
     if (!emailError && !passwordError) {
-      navigate("/dashboard");
-      alert("Đăng nhập thành công!");
+      try {
+        const response = await axios.post("http://localhost/qlns/src/php/login.php", {
+          email,
+          password,
+        });
+        if (response.data.status === "success") {
+          navigate("/dashboard");
+          alert("Đăng nhập thành công!");
+        } else {
+          alert("Đăng nhập thất bại: " + response.data.message);
+        }
+      } catch (error) {
+        console.error("There was an error!", error);
+      }
     }
   };
 
