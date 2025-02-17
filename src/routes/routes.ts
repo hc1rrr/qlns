@@ -3,6 +3,7 @@ import Dashboard from "../components/Dashboard";
 import RootLayout from "../layout/RootLayout";
 import { ReactNode } from "react";
 import TimeKeeping from "../components/TimeKeeping";
+import Salary from "../components/Salary";
 
 
 export interface IRoute {
@@ -16,7 +17,7 @@ const routes: IRoute[] = [
     { path: '/login', type: 'PUBLIC', component: Login },
     { path: '/dashboard', type: 'PUBLIC', component: Dashboard, layout: RootLayout },
     { path: '/time-keeping', type: 'PUBLIC', component: TimeKeeping, layout: RootLayout },
-    
+    { path: '/salary', type: 'PUBLIC', component: Salary, layout: RootLayout },
     
   ];
   
