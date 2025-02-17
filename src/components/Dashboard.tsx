@@ -1,12 +1,12 @@
 function Dashboard() {
   return (
-    <main className="p-4">
+    <main className="p-10 bg-[#F1F5F9] min-h-screen">
       {/* Nhân viên */}
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 card">
           <div className="flex items-center justify-between p-4 bg-white rounded-lg shadow">
             <div className="text-gray-500">
-              <h4 className="text-2xl font-semibold">41</h4>
+              <h4 className="text-2xl font-semibold text-black">41</h4>
               <p className="text-sm">Nhân viên</p>
               
             </div>
@@ -15,7 +15,7 @@ function Dashboard() {
           {/* Chức vụ */}
           <div className="flex items-center justify-between p-4 bg-white rounded-lg shadow">
             <div className="text-gray-500">
-              <h4 className="text-2xl font-semibold">9</h4>
+              <h4 className="text-2xl font-semibold text-black">9</h4>
               <p className="text-sm">Chức vụ</p>
             </div>
           </div>
@@ -23,7 +23,7 @@ function Dashboard() {
           {/* Phòng ban */}
           <div className="flex items-center justify-between p-4 bg-white rounded-lg shadow">
             <div className="text-gray-500">
-              <h4 className="text-2xl font-semibold">3</h4>
+              <h4 className="text-2xl font-semibold text-black">3</h4>
               <p className="text-sm">Phòng ban</p>
             </div>
           </div>

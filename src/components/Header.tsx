@@ -35,7 +35,7 @@ function Header() {
                 />
               </button>
 
-              {/* Dropdown menu với hiệu ứng mượt mà */}
+              {/* Dropdown menu */}
               <div
                 className={`absolute right-0 top-12 w-48 bg-white border rounded-lg shadow-lg p-2 dark:bg-gray-700 transition-opacity duration-200 transform ${
                   isDropdownOpen ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
