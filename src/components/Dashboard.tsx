@@ -1,4 +1,26 @@
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+
 function Dashboard() {
+  const [data, setData] = useState({
+    employee_count: 0,
+    position_count: 0,
+    department_count: 0,
+    positions: {},
+    departments: {}
+  });
+
+  useEffect(() => {
+    // Gọi API PHP để lấy dữ liệu về số lượng nhân viên, chức vụ và phòng ban
+    axios.get("http://localhost/qlns/src/php/getDashboardData.php")
+      .then(response => {
+        setData(response.data);
+      })
+      .catch(error => {
+        console.error("There was an error!", error);
+      });
+  }, []);
+
   return (
     <main className="p-4">
       {/* Nhân viên */}
@@ -6,25 +28,23 @@ function Dashboard() {
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 card">
           <div className="flex items-center justify-between p-4 bg-white rounded-lg shadow">
             <div className="text-gray-500">
-              <h4 className="text-2xl font-semibold">41</h4>
+              <h4 className="text-2xl font-semibold">{data.employee_count}</h4>
               <p className="text-sm">Nhân viên</p>
-              
             </div>
           </div>
 
           {/* Chức vụ */}
           <div className="flex items-center justify-between p-4 bg-white rounded-lg shadow">
             <div className="text-gray-500">
-              <h4 className="text-2xl font-semibold">9</h4>
-              <p className="text-sm">Chức vụụ
-              </p>
+              <h4 className="text-2xl font-semibold">{data.position_count}</h4>
+              <p className="text-sm">Chức vụ</p>
             </div>
           </div>
 
           {/* Phòng ban */}
           <div className="flex items-center justify-between p-4 bg-white rounded-lg shadow">
             <div className="text-gray-500">
-              <h4 className="text-2xl font-semibold">3</h4>
+              <h4 className="text-2xl font-semibold">{data.department_count}</h4>
               <p className="text-sm">Phòng ban</p>
             </div>
           </div>
@@ -42,26 +62,12 @@ function Dashboard() {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td className="px-4 py-2">Giám đốc</td>
-                  <td className="px-4 py-2">1</td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2">Phó giám đốc</td>
-                  <td className="px-4 py-2">2</td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2">Trưởng phòng</td>
-                  <td className="px-4 py-2">5</td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2">Nhân viên</td>
-                  <td className="px-4 py-2">30</td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2">Thực tập sinh</td>
-                  <td className="px-4 py-2">10</td>
-                </tr>
+                {Object.keys(data.positions).map((position, index) => (
+                  <tr key={index}>
+                    <td className="px-4 py-2">{position}</td>
+                    <td className="px-4 py-2">{data.positions[position]}</td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
@@ -79,26 +85,12 @@ function Dashboard() {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td className="px-4 py-2">Phòng Nhân sự</td>
-                  <td className="px-4 py-2">9</td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2">Phòng kế toán</td>
-                  <td className="px-4 py-2">6</td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2">Phòng Kinh doanh</td>
-                  <td className="px-4 py-2">10</td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2">Phòng Marketing</td>
-                  <td className="px-4 py-2">10</td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2">Phòng IT</td>
-                  <td className="px-4 py-2">15</td>
-                </tr>
+                {Object.keys(data.departments).map((department, index) => (
+                  <tr key={index}>
+                    <td className="px-4 py-2">{department}</td>
+                    <td className="px-4 py-2">{data.departments[department]}</td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
