@@ -51,7 +51,7 @@ function Salary() {
                         <th className="px-6 py-3 text-left text-sm font-medium text-gray-900 uppercase tracking-wider">Số ngày công</th>
                         <th className="px-6 py-3 text-left text-sm font-medium text-gray-900 uppercase tracking-wider">Mức lương</th>
                         <th className="px-6 py-3 text-left text-sm font-medium text-gray-900 uppercase tracking-wider">Lương thực nhận</th>
-                        <th className="px-6 py-3 text-left text-sm font-medium text-gray-900 uppercase tracking-wider">Chỉnh sửa</th>
+                        <th className="px-6 py-3 text-left text-sm font-medium text-gray-900 uppercase tracking-wider">Thao tác</th>
                     </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
