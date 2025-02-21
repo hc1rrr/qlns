@@ -83,7 +83,7 @@ function Dashboard() {
                   <td className="px-4 py-2">9</td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2">Phòng kế toán</td>
+                  <td className="px-4 py-2">Phòng Kế toán</td>
                   <td className="px-4 py-2">6</td>
                 </tr>
                 <tr>
