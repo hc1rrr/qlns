@@ -29,7 +29,7 @@ function Employee() {
         setEditingEmployee({
             employee_id: "",
             fullname: "",
-            gender: "",
+            gender: "Nam",
             dob: "",
             address: "",
             email: "",
@@ -57,32 +57,37 @@ function Employee() {
         setEmployees((prevEmployees) => prevEmployees.filter(emp => emp.employee_id !== employee_id));
     };
 
+    const employeeFields = [
+        { key: "fullname", label: "Tên nhân viên", type: "text" },
+        { key: "gender", label: "Giới tính", type: "radio", options: ["Nam", "Nữ"] },
+        { key: "dob", label: "Ngày sinh", type: "date" },
+        { key: "address", label: "Địa chỉ", type: "text" },
+        { key: "email", label: "Email", type: "text" },
+        { key: "phonenumber", label: "Số điện thoại", type: "tel", pattern: "^\\+\\d{1,15}$" },
+        { key: "position_id", label: "Mã chức vụ", type: "text" },
+        { key: "department_id", label: "Mã phòng ban", type: "text" },
+        { key: "salary", label: "Lương", type: "text" }
+    ];
+
     return (
         <div className="p-6">
-            <h1 className="text-xl font-semibold mb-4">Danh sách nhân viên</h1>
+            <h1 className="text-2xl font-semibold mb-4">Quản lý nhân viên</h1>
             <button onClick={handleAdd} className="mb-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Thêm Nhân Viên</button>
             <div className="overflow-x-auto">
                 <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
                     <thead className="bg-gray-100 text-black text-sm uppercase">
                         <tr className="border-b">
-                            {["Mã NV", "Tên NV", "Giới tính", "Ngày sinh", "Địa chỉ", "Email", "SĐT", "Chức vụ", "Phòng ban", "Lương", "Thao tác"].map((header, index) => (
+                            {["Mã NV", "Tên NV", "Giới tính", "Ngày sinh", "Địa chỉ", "Email", "SĐT", "Chức vụ", "Phòng ban", "Lương", "Hành động"].map((header, index) => (
                                 <th key={index} className="px-4 py-3 text-center">{header}</th>
                             ))}
                         </tr>
                     </thead>
                     <tbody className="text-sm divide-y">
                         {employees.map((employee, index) => (
-                            <tr key={index}>
-                                <td className="px-4 py-3 text-center">{employee.employee_id}</td>
-                                <td className="px-4 py-3">{employee.fullname}</td>
-                                <td className="px-4 py-3 text-center">{employee.gender}</td>
-                                <td className="px-4 py-3 text-center">{employee.dob}</td>
-                                <td className="px-4 py-3">{employee.address}</td>
-                                <td className="px-4 py-3">{employee.email}</td>
-                                <td className="px-4 py-3 text-center">{employee.phonenumber}</td>
-                                <td className="px-4 py-3 text-center">{employee.position_id}</td>
-                                <td className="px-4 py-3 text-center">{employee.department_id}</td>
-                                <td className="px-4 py-3 text-center">{employee.salary.toLocaleString()} VND</td>
+                            <tr key={index} className="hover:bg-gray-100">
+                                {Object.keys(employee).map((key, i) => (
+                                    <td key={i} className="px-4 py-3 text-center">{employee[key]}</td>
+                                ))}
                                 <td className="px-4 py-3 flex justify-center gap-3">
                                     <button className="text-blue-600 hover:text-blue-800" onClick={() => handleEdit(employee)}>✏️</button>
                                     <button className="text-red-600 hover:text-red-800" onClick={() => handleDelete(employee.employee_id)}>🗑️</button>
@@ -99,25 +104,34 @@ function Employee() {
                         <h2 className="text-2xl font-semibold text-gray-800 mb-4 text-center">{editingEmployee.employee_id ? "Chỉnh sửa nhân viên" : "Thêm nhân viên mới"}</h2>
                         
                         <div className="grid grid-cols-2 gap-4">
-                            {[
-                                { key: "fullname", label: "Tên nhân viên" },
-                                { key: "gender", label: "Giới tính" },
-                                { key: "dob", label: "Ngày sinh" },
-                                { key: "address", label: "Địa chỉ" },
-                                { key: "email", label: "Email" },
-                                { key: "phonenumber", label: "Số điện thoại" },
-                                { key: "position_id", label: "Mã chức vụ" },
-                                { key: "department_id", label: "Mã phòng ban" },
-                                { key: "salary", label: "Lương" }
-                            ].map(({ key, label }) => (
+                            {employeeFields.map(({ key, label, type, options, pattern }) => (
                                 <div key={key} className="relative">
                                     <label className="block text-gray-700 text-sm font-semibold mb-1">{label}</label>
-                                    <input
-                                        type="text"
-                                        value={editingEmployee[key]}
-                                        onChange={(e) => setEditingEmployee({ ...editingEmployee, [key]: e.target.value })}
-                                        className="w-full h-8 p-2 border rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                    />
+                                    {type === "radio" ? (
+                                        <div className="flex gap-4">
+                                            {options.map(option => (
+                                                <label key={option} className="flex items-center gap-2">
+                                                    <input
+                                                        type="radio"
+                                                        name="gender"
+                                                        value={option}
+                                                        checked={editingEmployee[key] === option}
+                                                        onChange={(e) => setEditingEmployee(prev => ({ ...prev, [key]: e.target.value }))}
+                                                        className="form-radio"
+                                                    />
+                                                    {option}
+                                                </label>
+                                            ))}
+                                        </div>
+                                    ) : (
+                                        <input
+                                            type={type}
+                                            value={editingEmployee[key] || ""}
+                                            pattern={pattern || undefined}
+                                            onChange={(e) => setEditingEmployee(prev => ({ ...prev, [key]: e.target.value }))}
+                                            className="w-full h-8 p-2 border rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        />
+                                    )}
                                 </div>
                             ))}
                         </div>
