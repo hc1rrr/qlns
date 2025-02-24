@@ -8,10 +8,8 @@ interface MenuItem {
 const MENU: MenuItem[] = [
   { label: "Dashboard", path: "/dashboard" },
   { label: "Quản lý chức vụ", path: "/" },
-  { label: "Quản lý phòng ban", path: "/" },
   { label: "Quản lý nhân viên ", path: "/employee" },
   { label: "Quản lý phòng ban", path: "/department" },
-  { label: "Quản lý nhân viên ", path: "/" },
   { label: "Quản lý chấm công", path: "/time-keeping" },
   { label: "Quản lý lương", path: "/salary" },
 ];

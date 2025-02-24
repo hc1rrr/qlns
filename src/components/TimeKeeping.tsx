@@ -1,31 +1,21 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 function TimeKeeping() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
-  const [timeKeepingData, setTimeKeepingData] = useState([
-    {
-      employee_id: "NV00001",
-      name: "Nguyễn Văn A",
-      check_in: "08:02:32 AM",
-      check_out: "17:05:19 PM",
-      date: "11/02/2025",
-    },
-    {
-      employee_id: "NV00002",
-      name: "Trần Thị B",
-      check_in: "08:15:00 AM",
-      check_out: "17:10:30 PM",
-      date: "11/02/2025",
-    },
-    {
-      employee_id: "NV00003",
-      name: "Lê Văn C",
-      check_in: "08:50:45 AM",
-      check_out: "12:30:20 PM",
-      date: "11/02/2025",
-    },
-  ]);
+  const [timeKeepingData, setTimeKeepingData] = useState([]);
+
+  useEffect(() => {
+    // Gọi API PHP để lấy dữ liệu từ bảng chamcong
+    axios.get("http://localhost/qlns/src/php/getTimeKeepingData.php")
+      .then(response => {
+        setTimeKeepingData(response.data);
+      })
+      .catch(error => {
+        console.error("There was an error!", error);
+      });
+  }, []);
 
   const openModal = (employee) => {
     setSelectedEmployee({ ...employee });
@@ -39,7 +29,6 @@ function TimeKeeping() {
 
   const handleSave = () => {
     const updatedData = timeKeepingData.map((employee) =>
-      //Xử lý nv có id === nv đc chọn -> thay t2 từ selectedEmployee
       employee.employee_id === selectedEmployee.employee_id
         ? selectedEmployee
         : employee 
