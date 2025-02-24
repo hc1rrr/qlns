@@ -8,7 +8,7 @@ function RootLayout({ children }: { children: ReactNode }) {
       <Header />
       <div className="flex flex-col md:flex-row mt-14">
         <Sidebar />
-        <div className="flex-1 p-4">{children}</div>
+        <div className="flex-1">{children}</div>
       </div>
     </div>
   );
