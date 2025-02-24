@@ -7,14 +7,9 @@ interface MenuItem {
 
 const MENU: MenuItem[] = [
   { label: "Dashboard", path: "/dashboard" },
-  { label: "Quản lý chức vụ", path: "/" },
-<<<<<<< HEAD
-  { label: "Quản lý phòng ban", path: "/" },
-  { label: "Quản lý nhân viên ", path: "/employee" },
-=======
+  { label: "Quản lý chức vụ", path: "/position" },
   { label: "Quản lý phòng ban", path: "/department" },
-  { label: "Quản lý nhân viên ", path: "/" },
->>>>>>> e9788e765087e77a3149266f4b266dcb417b1a32
+  { label: "Quản lý nhân viên ", path: "/employee" },
   { label: "Quản lý chấm công", path: "/time-keeping" },
   { label: "Quản lý lương", path: "/salary" },
 ];

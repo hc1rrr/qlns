@@ -44,55 +44,20 @@ function Salary() {
     };
 
     return (
-<<<<<<< HEAD
         <div className="p-6">
-            <h1 className="text-2xl font-semibold mb-4">Quản lý lương nhân viên</h1>
+            <h1 className="text-xl font-semibold mb-4">Danh sách lương nhân viên</h1>
             <div className="overflow-x-auto">
                 <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
                     <thead className="bg-gray-100 text-black text-sm uppercase">
                         <tr className="border-b">
-                            {["Mã NV", "Tên NV", "Kỳ trả lương", "Số ngày công", "Mức lương", "Lương thực nhận", "Hành động"].map((header, index) => (
+                            {["Mã NV", "Tên NV", "Kỳ trả lương", "Số ngày công", "Mức lương", "Lương thực nhận", "Thao tác"].map((header, index) => (
                                 <th key={index} className="px-4 py-3 text-center">{header}</th>
                             ))}
-=======
-        <div>
-            <h1 className="p-5 text-xl font-semibold">Danh sách</h1>
-            <table className="min-w-full divide-y bg-gray-100">
-                <thead>
-                    <tr>
-                        <th className="px-6 py-3 text-left text-sm font-medium text-gray-900 uppercase tracking-wider">Mã NV</th>
-                        <th className="px-6 py-3 text-left text-sm font-medium text-gray-900 uppercase tracking-wider">Tên NV</th>
-                        <th className="px-6 py-3 text-left text-sm font-medium text-gray-900 uppercase tracking-wider">Kỳ trả lương</th>
-                        <th className="px-6 py-3 text-left text-sm font-medium text-gray-900 uppercase tracking-wider">Số ngày công</th>
-                        <th className="px-6 py-3 text-left text-sm font-medium text-gray-900 uppercase tracking-wider">Mức lương</th>
-                        <th className="px-6 py-3 text-left text-sm font-medium text-gray-900 uppercase tracking-wider">Lương thực nhận</th>
-                        <th className="px-6 py-3 text-left text-sm font-medium text-gray-900 uppercase tracking-wider">Thao tác</th>
-                    </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                    {timeKeepingData.map((employee, index) => (
-                        <tr key={index}>
-                            <td className="px-6 py-4 whitespace-nowrap">{employee.employee_id}</td>
-                            <td className="px-6 py-4 whitespace-nowrap">{employee.name}</td>
-                            <td className="px-6 py-4 whitespace-nowrap">{employee.pay_period}</td>
-                            <td className="px-6 py-4 whitespace-nowrap">{employee.work_days}</td>
-                            <td className="px-6 py-4 whitespace-nowrap">{employee.salary_rate.toLocaleString()} VND</td>
-                            <td className="px-6 py-4 whitespace-nowrap">{employee.total_salary.toLocaleString()} VND</td>
-                            <td className="px-6 py-4 whitespace-nowrap">
-                                <button className="px-2" onClick={() => handleEdit(employee)}>
-                                    <svg className="h-6 w-6 text-slate-500" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" />
-                                        <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
-                                        <line x1="13.5" y1="6.5" x2="17.5" y2="10.5" />
-                                    </svg>
-                                </button>
-                            </td>
->>>>>>> e9788e765087e77a3149266f4b266dcb417b1a32
                         </tr>
                     </thead>
                     <tbody className="text-sm divide-y">
                         {timeKeepingData.map((employee, index) => (
-                            <tr key={index} className="hover:bg-gray-100">
+                            <tr key={index}>
                                 <td className="px-4 py-3 text-center">{employee.employee_id}</td>
                                 <td className="px-4 py-3">{employee.fullname}</td>
                                 <td className="px-4 py-3 text-center">{employee.pay_period}</td>

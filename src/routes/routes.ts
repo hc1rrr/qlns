@@ -4,11 +4,9 @@ import RootLayout from "../layout/RootLayout";
 import { ReactNode } from "react";
 import TimeKeeping from "../components/TimeKeeping";
 import Salary from "../components/Salary";
-<<<<<<< HEAD
 import Employee from "../components/Employee";
-=======
 import Department from "../components/Department";
->>>>>>> e9788e765087e77a3149266f4b266dcb417b1a32
+import Position from "../components/Position";
 
 
 export interface IRoute {
@@ -23,13 +21,9 @@ const routes: IRoute[] = [
     { path: '/dashboard', type: 'PUBLIC', component: Dashboard, layout: RootLayout },
     { path: '/time-keeping', type: 'PUBLIC', component: TimeKeeping, layout: RootLayout },
     { path: '/salary', type: 'PUBLIC', component: Salary, layout: RootLayout },
-<<<<<<< HEAD
     { path: '/employee', type: 'PUBLIC', component: Employee, layout: RootLayout },
-=======
     { path: '/department', type: 'PUBLIC', component: Department, layout: RootLayout },
-
-    
->>>>>>> e9788e765087e77a3149266f4b266dcb417b1a32
+    { path: '/position', type: 'PUBLIC', component: Position, layout: RootLayout },
   ];
   
   export default routes;
