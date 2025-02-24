@@ -42,7 +42,7 @@ function TimeKeeping() {
       //Xử lý nv có id === nv đc chọn -> thay t2 từ selectedEmployee
       employee.employee_id === selectedEmployee.employee_id
         ? selectedEmployee
-        : employee 
+        : employee
     );
     setTimeKeepingData(updatedData);
     closeModal();
@@ -51,8 +51,7 @@ function TimeKeeping() {
   const calculateWorkHours = (checkIn: string, checkOut: string) => {
     const parseTime = (timeStr: string) => {
       const [time] = timeStr.split(" ");
-      let [hours, minutes, seconds] = time.split(":").map(Number);
-
+      const [hours, minutes, seconds] = time.split(":").map(Number);
       return hours + minutes / 60 + seconds / 3600; // Trả về tổng giờ dưới dạng số
     };
 
@@ -69,79 +68,54 @@ function TimeKeeping() {
   };
 
   return (
-    <div>
-      <h1 className="p-5 text-xl font-semibold">Danh sách</h1>
-      <table className="min-w-full divide-y bg-gray-100">
-        <thead>
-          <tr>
-            <th className="px-6 py-3 text-left text-sm font-medium text-gray-900 uppercase tracking-wider">
-              Mã NV
-            </th>
-            <th className="px-6 py-3 text-left text-sm font-medium text-gray-900 uppercase tracking-wider">
-              Tên NV
-            </th>
-            <th className="px-6 py-3 text-left text-sm font-medium text-gray-900 uppercase tracking-wider">
-              Thời gian vào
-            </th>
-            <th className="px-6 py-3 text-left text-sm font-medium text-gray-900 uppercase tracking-wider">
-              Thời gian ra
-            </th>
-            <th className="px-6 py-3 text-left text-sm font-medium text-gray-900 uppercase tracking-wider">
-              Ngày tháng
-            </th>
-            <th className="px-6 py-3 text-left text-sm font-medium text-gray-900 uppercase tracking-wider">
-              Tổng giờ làm
-            </th>
-            <th className="px-6 py-3 text-left text-sm font-medium text-gray-900 uppercase tracking-wider">
-              Thao tác
-            </th>
-          </tr>
-        </thead>
-        <tbody className="bg-white divide-y divide-gray-200">
-          {timeKeepingData.map((employee, index) => (
-            <tr key={index}>
-              <td className="px-6 py-4 whitespace-nowrap">
-                {employee.employee_id}
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap">{employee.name}</td>
-              <td className="px-6 py-4 whitespace-nowrap">
-                {employee.check_in}
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap">
-                {employee.check_out}
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap">{employee.date}</td>
-              <td className="px-6 py-4 whitespace-nowrap">
-                {calculateWorkHours(employee.check_in, employee.check_out)} giờ
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap">
-                <button className="px-2" onClick={() => openModal(employee)}>
-                  <svg
-                    className="h-6 w-6 text-slate-500"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    stroke-width="2"
-                    stroke="currentColor"
-                    fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    {" "}
-                    <path stroke="none" d="M0 0h24v24H0z" />{" "}
-                    <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />{" "}
-                    <line x1="13.5" y1="6.5" x2="17.5" y2="10.5" />
-                  </svg>
-                </button>
-              </td>
+    <div className="p-6">
+      <h1 className="text-xl font-semibold mb-4">Danh sách chấm công</h1>
+      <div className="overflow-x-auto">
+        <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+          <thead className="bg-gray-100 text-black text-sm uppercase">
+            <tr className="border-b">
+              <th className="px-4 py-3 text-center">Mã NV</th>
+              <th className="px-4 py-3 text-center">Tên NV</th>
+              <th className="px-4 py-3 text-center">Thời gian vào</th>
+              <th className="px-4 py-3 text-center">Thời gian ra</th>
+              <th className="px-4 py-3 text-center">Ngày tháng</th>
+              <th className="px-4 py-3 text-center">Tổng giờ làm</th>
+              <th className="px-4 py-3 text-center">Thao tác</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody className="text-sm divide-y">
+            {timeKeepingData.map((employee, index) => (
+              <tr key={index}>
+                <td className="px-4 py-3 text-center">
+                  {employee.employee_id}
+                </td>
+                <td className="px-4 py-3">{employee.name}</td>
+                <td className="px-4 py-3 text-center">{employee.check_in}</td>
+                <td className="px-4 py-3 text-center">{employee.check_out}</td>
+                <td className="px-4 py-3 text-center">{employee.date}</td>
+                <td className="px-4 py-3 text-center">
+                  {calculateWorkHours(employee.check_in, employee.check_out)}{" "}
+                  giờ
+                </td>
+                <td className="px-4 py-3 flex justify-center gap-3">
+                  <button
+                    className="text-blue-600 hover:text-blue-800"
+                    onClick={() => openModal(employee)}
+                  >
+                    ✏️
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
       {isModalOpen && selectedEmployee && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
           <div className="bg-white p-6 rounded-lg shadow-lg w-96">
-            <h2 className="text-lg font-bold mb-4">Chấm công</h2>
+            <h2 className="text-lg font-bold mb-4 text-center">
+              Chỉnh sửa chấm công
+            </h2>
             <tr>
               <td>
                 <label className="block text-sm font-medium text-gray-700 mb-2">

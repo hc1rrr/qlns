@@ -59,20 +59,20 @@ function Employee() {
 
     return (
         <div className="p-6">
-            <h1 className="text-2xl font-semibold mb-4">Quản lý nhân viên</h1>
-            <button onClick={handleAdd} className="mb-4 px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600">Thêm Nhân Viên</button>
+            <h1 className="text-xl font-semibold mb-4">Danh sách nhân viên</h1>
+            <button onClick={handleAdd} className="mb-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Thêm Nhân Viên</button>
             <div className="overflow-x-auto">
                 <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
                     <thead className="bg-gray-100 text-black text-sm uppercase">
                         <tr className="border-b">
-                            {["Mã NV", "Tên NV", "Giới tính", "Ngày sinh", "Địa chỉ", "Email", "SĐT", "Chức vụ", "Phòng ban", "Lương", "Hành động"].map((header, index) => (
+                            {["Mã NV", "Tên NV", "Giới tính", "Ngày sinh", "Địa chỉ", "Email", "SĐT", "Chức vụ", "Phòng ban", "Lương", "Thao tác"].map((header, index) => (
                                 <th key={index} className="px-4 py-3 text-center">{header}</th>
                             ))}
                         </tr>
                     </thead>
                     <tbody className="text-sm divide-y">
                         {employees.map((employee, index) => (
-                            <tr key={index} className="hover:bg-gray-100">
+                            <tr key={index}>
                                 <td className="px-4 py-3 text-center">{employee.employee_id}</td>
                                 <td className="px-4 py-3">{employee.fullname}</td>
                                 <td className="px-4 py-3 text-center">{employee.gender}</td>
